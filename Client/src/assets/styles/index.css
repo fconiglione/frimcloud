@@ -1,13 +1,339 @@
-body {
+/* Login (.login) */
+
+.login {
+  background: linear-gradient(to top, #ffffff, #d8c3fb);
+  height: 100vh;
+}
+.login-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 30px;
+  height: 100%;
+}
+.login-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+}
+.login-title img {
+  height: 100px;
+  width: auto;
+  margin: -50px -30px;
+}
+.login-title h1 {
+  font-size: 1.6em;
+  font-weight: 500;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-weight: 600;
+  text-align: center;
+}
+.login-form {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  padding: 40px;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.login-form form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 30px;
+  width: 450px;
+}
+@media screen and (max-width: 700px) {
+  .login-form form {
+      width: 350px;
+  }
+  .login-form-nav a {
+      font-size: 0.8em;
+  }
+}
+@media screen and (max-width: 500px) {
+  .login-form form {
+      width: 280px;
+  }
+  .login-form {
+      padding: 30px;
+  }
+  .login-form-nav {
+      flex-direction: column !important;
+      gap: 10px;
+  }
+}
+@media screen and (max-width: 400px) {
+  .login-form form {
+      width: 220px;
+  }
+}
+.login-form form fieldset {
+  width: 100%;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 0;
+}
+.login-form form fieldset label {
+  font-weight: 600;
+}
+.login-form form fieldset input {
+  width: 100%;
+  padding: 12px;
+  border-right: none;
+  border-top: none;
+  border-bottom: none;
+  font-size: 0.9em;
+  border-left: 1px solid #000000;
+}
+.login-form form fieldset input:focus {
+  outline: none;
+}
+.login-input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  border: 1px solid #000000;
+}
+.login-input i {
+  font-size: 1em;
+  color: #000000;
+  padding: 12px;
+}
+.login-form-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+}
+.login-form-nav a {
+  color: rgb(0,0,255);
+}
+.login-form-nav a:hover {
+  text-decoration: none;
+}
+.login-main {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.login-products {
+  display: grid;
+  /* Replace and change for number of product-items */
+  grid-template-columns: repeat(1, 40px);
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+.login-product {
+  background-color: #ffffff;
+  padding: 4px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.login-product img {
+  width: 30px;
+  height: 30px;
+}
+.login-footer p {
+  text-align: center;
+  margin: 0;
+  padding: 0;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* Register (.register) */
+
+.register {
+  background: linear-gradient(to top, #ffffff, #d8c3fb);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 50px 0;
+}
+.register-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 30px;
+}
+.register-container div {
+  width: 100%;
+}
+.register-title img {
+  height: 160px;
+  width: auto;
+  margin: -50px -30px;
+}
+.register-title-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  gap: 20px;
+}
+.register-title-item div:last-child {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+.register-title h1 {
+  text-align: center;
+  margin-bottom: 0;
+  font-size: 1.6em;
+}
+.register-title-item a {
+  text-align: right;
+  width: 100%;
+  color: rgb(0,0,255);
+}
+.register-title-item a:hover {
+  text-decoration: none;
+}
+.register-form {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+.register-form form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 30px;
+  width: 100%;
+}
+@media screen and (max-width: 700px) {
+  .register-form {
+      padding: 0;
+  }
+  .register-form form {
+      width: 400px;
+  }
+  .register-form-nav a, .register-form-nav p, .register-footer p {
+      font-size: 0.8em;
+  }
+  .register-form-nav p {
+      padding: 0 30px;
+  }
+  .register-title-item a {
+      text-align: center;
+  }
+  .register-title img {
+      width: 100%;
+      margin-left: 0;
+      margin-right: 0;
+  }
+  .register-title-item {
+      flex-direction: column;
+  }
+}
+@media screen and (max-width: 500px) {
+  .register-form form {
+      width: 300px;
+  }
+  .register-form-nav {
+      flex-direction: column !important;
+      gap: 10px;
+  }
+}
+@media screen and (max-width: 400px) {
+  .register-form form {
+      width: 250px;
+  }
+}
+.register-form form fieldset {
+  width: 100%;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 0;
+}
+.register-form form fieldset label {
+  font-weight: 600;
+}
+.register-form form fieldset input {
+  width: 100%;
+  padding: 12px;
+  border-right: none;
+  border-top: none;
+  border-bottom: none;
+  font-size: 0.9em;
+  border-left: 1px solid #000000;
+}
+.register-form form fieldset input:focus {
+  outline: none;
+}
+.register-input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  border: 1px solid #000000;
+  background-color: #ffffff;
+}
+.register-input i {
+  font-size: 1em;
+  color: #000000;
+  padding: 12px;
+}
+.register-footer p {
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+.register-form-nav {
+  text-align: center;
+}
+.register-form-nav a {
+  color: rgb(0,0,255);
+}
+.register-form-nav a:hover {
+  text-decoration: none;
+}
+.register-input checkbox {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  gap: 20px;
+}
+.register-input checkbox input {
+  width: auto !important;
+}
+.register-checkbox {
+  border: none;
+  background-color: transparent;
+}
+
+/* Error message */
+
+.error-message {
+  display: none;
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  background-color: red;
+  color: white;
+  font-size: 1em;
+  padding: 8px 12px;
+  font-weight: 600;
+  z-index: 9999;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+.error-message.visible {
+  display: flex;
 }

@@ -1,38 +1,287 @@
-.App {
-  text-align: center;
+/* Global Styling */
+
+/* Dark (.dark) */
+
+.dark {
+  background-color: #000000;
+  color: #ffffff;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Sections */
+
+section {
+  padding: 0 2%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* Font */
+
+* {
+  font-family: "Inter", sans-serif;
+  line-height: 130%;
+}
+html {
+  background-color: #ffffff;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* No Scroll */
+
+.no-scroll {
+  overflow: hidden;
+}
+
+/* Light Mode Buttons */
+
+.header .btn-1 {
+  font-size: 1em;
+  padding: 8px 10px;
+}
+.header .btn-2 {
+  font-size: 1em;
+  padding: 6px 10px; /* Adjusted for border */
+}
+.btn-1 {
+  font-size: 1.2em;
+  padding: 30px 24px;
+  cursor: pointer;
+  font-weight: 500;
+  color: #ffffff;
+  background: linear-gradient(to left, #000000 50%, #9e67ff 50%);
+  background-size: 200% 100%;
+  background-position: right;
+  transition: background-position 0.3s;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+.btn-1:hover {
+  background-position: left;
+  color: #ffffff;
+  border-color: #9e67ff;
+}
+.dark .btn-1 {
+  background: linear-gradient(to left, #ffffff 50%, #9e67ff 50%);
+  background-size: 200% 100%;
+  background-position: right;
+  color: #000000;
+}
+.dark .btn-1:hover {
+  background-position: left;
+  color: #ffffff;
+  border-color: #9e67ff;
+}
+.btn-2 {
+  font-size: 1.2em;
+  padding: 28px 24px; /* Adjusted for border */
+  cursor: pointer;
+  font-weight: 500;
+  color: #000000;
+  background: linear-gradient(to left, #ffffff 50%, #000000 50%);
+  border: 2px solid #000000;
+  background-size: 200% 100%;
+  background-position: right;
+  transition: background-position 0.3s;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+.btn-2:hover {
+  background-position: left;
+  color: #ffffff;
+}
+.dark .btn-2 {
+  background: linear-gradient(to left, #000000 50%, #ffffff 50%);
+  background-size: 200% 100%;
+  background-position: right;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+}
+.dark .btn-2:hover {
+  background-position: left;
+  color: #000000;
+}
+.btn-3 {
+  font-size: 1.2em;
+  padding: 28px 24px; /* Adjusted for border */
+  cursor: pointer;
+  font-weight: 500;
+  color: #000000;
+  background: linear-gradient(to left, transparent 50%, #000000 50%);
+  border: 2px solid #000000;
+  background-size: 200% 100%;
+  background-position: right;
+  transition: background-position 0.3s;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+.btn-3:hover {
+  background-position: left;
+  color: #ffffff;
+}
+.dark .btn-3 {
+  background: linear-gradient(to left, transparent 50%, #ffffff 50%);
+  background-size: 200% 100%;
+  background-position: right;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+}
+.dark .btn-3:hover {
+  background-position: left;
+  color: #000000;
+}
+.light-dark-mode-btn {
+  cursor: pointer;
+  font-size: 22px;
+  color: #000000;
+  background-size: 200% 100%;
+  border: none;
+  background-color: transparent;
+}
+.btn-1, .btn-2, .btn-3 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  width: fit-content;
+}
+
+/* ScrollToTopButton */
+
+#scrollToTopButton {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  border: 2px solid #000000;
+  outline: none;
+  background-color: #ffffff;
+  color: #000000;
+  cursor: pointer;
+  padding: 15px;
+  font-size: 18px;
+  width: 50px;
+  height: 50px;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* ScrollToTopButton (.dark) */
+
+.dark #scrollToTopButton {
+  background-color: #000000;
+  color: #ffffff;
+  border-color: #ffffff;
+}
+
+#scrollToTopButton:hover {
+  transform: translateY(-5px);
+}
+
+/* LightDarkModeBtn */
+
+.light-dark-mode-btn {
+  transition: transform 0.3s ease;
+}
+
+.dark .light-dark-mode-btn {
+  color: #ffffff;
+}
+
+.rotate180 {
+  transform: rotate(180deg);
+}
+
+/* Cookie Banner (CookieBanner.js) */
+
+.cookie-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  background-color: rgba(0,0,0,0.85);
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  gap: 50px;
+  padding: 30px 20px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
+  align-items: center;
+}
+.cookie-banner p {
+  color: #ffffff;
+  margin: 0;
+  font-family: "Sometype Mono", sans-serif;
+  font-size: 12px;
+}
+.cookie-banner-container:first-child {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  gap: 20px;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+}
+.cookie-banner-container:last-child {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: center;
+}
+.cookie-banner-container:last-child a {
+  transition: color 0.3s;
+  white-space: nowrap;
+  color: #ffffff;
+}
+.cookie-banner-container:last-child a:hover {
+  color: #c7c7c7;
+}
+.cookie-banner-container:last-child button {
+  white-space: nowrap;
+  border-radius: 0;
+  border: none;
+  padding: 10px 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  color: #000000;
+  background-color: #ffffff;
+}
+.cookie-banner-container:last-child button:hover {
+  background-color: #c7c7c7;
+}
+.cookie-banner-container:first-child a {
+  color: #ffffff;
+  text-decoration: underline;
+  font-family: "Sometype Mono", sans-serif;
+  transition: color 0.3s;
+}
+.cookie-banner-container:first-child a:hover {
+  color: #c7c7c7;
+}
+@media screen and (max-width: 1077px) {
+  .cookie-banner {
+      flex-direction: column;
+      gap: 30px;
+      padding: 20px;
+      align-items: flex-start;
+  }
 }
 
-.App-link {
-  color: #61dafb;
-}
+/* Login/Register Submit-btn */
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.submit-btn {
+  border-radius: 15px;
+  font-size: 1.2em;
+  padding: 12px 0;
+  cursor: pointer;
+  font-weight: 500;
+  color: #ffffff;
+  background: linear-gradient(to left, #000000 50%, #9e67ff 50%);
+  background-size: 200% 100%;
+  background-position: right;
+  transition: background-position 0.3s;
+  text-decoration: none;
+  box-sizing: border-box;
+  border: none;
+  width: 100%;
+}
+.submit-btn:hover {
+  background-position: left;
+  color: #ffffff;
 }
