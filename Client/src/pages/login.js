@@ -28,13 +28,13 @@ function Login() {
                        process.env.REACT_APP_PROD_API_URL;
 
         try {
-            const response = await axios.post(apiUrl + '/login', formData, { withCredentials: true });
+            const response = await axios.post(apiUrl + '/users/login', formData, { withCredentials: true });
             setFormData({
                 email: "",
                 password: ""
             });
             if (response.status === 200) {
-                window.location.href = "https://www.cloud.frim.com";
+                window.location.href = "/home";
                 return
             }
         } catch (error) {

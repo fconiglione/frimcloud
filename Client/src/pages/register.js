@@ -46,7 +46,7 @@ function Register() {
         }
 
         try {
-            const response = await axios.post(apiUrl + '/users', { token, ...formData }, { withCredentials: true });
+            const response = await axios.post(apiUrl + '/users/register', { token, ...formData }, { withCredentials: true });
             
             captchaRef.current.reset();
 
