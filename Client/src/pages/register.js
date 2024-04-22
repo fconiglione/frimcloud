@@ -46,7 +46,7 @@ function Register() {
         }
 
         try {
-            const response = await axios.post(apiUrl + '/register', { token, ...formData }, { withCredentials: true });
+            const response = await axios.post(apiUrl + '/users', { token, ...formData }, { withCredentials: true });
             
             captchaRef.current.reset();
 
@@ -58,7 +58,7 @@ function Register() {
                 receiveUpdates: false,
             });
             if (response.status === 200) {
-                window.location.href = 'https://www.cloud.frim.com';
+                window.location.href = '/home';
                 return;
             }
             else {

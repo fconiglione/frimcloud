@@ -6,15 +6,18 @@ const express = require('express');
 const app = express();
 app.use(bodyParser.json());
 
-if (process.env.NODE_ENV !== 'production') {
-    require('dotenv').config();
+dotenv.config();
 
-    const cors = require('cors');
-    app.use(cors({
-        origin: process.env.CLIENT_URL,
-        methods: "GET, POST, PUT, DELETE, HEAD, OPTIONS"
-    }));
-}
+app.use(cors({
+    origin: ['http://localhost:4200', 'http://localhost:3000', 'https://www.frim.io', 'https://www.api.frim.io', 'https://www.cloud.frim.io'],
+    credentials: true
+}))
 
-app.listen(3000);
+const userController = require('../controllers/user');
+app.use('/v1/api/users', userController);
+
+app.listen(3000, () => {
+    console.log('Server is running on port 3000');
+});
+
 module.exports = app;
