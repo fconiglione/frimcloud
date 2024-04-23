@@ -1,5 +1,6 @@
 import React, {useEffect} from "react";
 import ShapesBanner from "../assets/images/shapes-banner.svg";
+import CeasarColouredLogo2 from "../assets/images/ceasar-coloured-logo-2.svg";
 
 function Home() {
     const pageTitle = "Home";
@@ -39,7 +40,57 @@ function Home() {
                 </div>
             </section>
             <hr />
-            <section className="quick-access" id="quick-access"></section>
+            <section className="quick-access" id="quick-access">
+                <div className="quick-access-row">
+                    <h1>Quick access</h1>
+                </div>
+                <div className="quick-access-row">
+                    <div className="quick-apps">
+                        <a className="quick-app" href="https://www.ceasar.frim.io">
+                            <img src={CeasarColouredLogo2} alt="Ceasar app icon" />
+                            <p>Ceasar</p>
+                        </a>
+                        <a className="quick-app" href="https://www.ceasar.frim.io">
+                            <img src={CeasarColouredLogo2} alt="Ceasar app icon" />
+                            <p>Ceasar</p>
+                        </a>
+                        <a className="quick-app" href="https://www.ceasar.frim.io">
+                            <img src={CeasarColouredLogo2} alt="Ceasar app icon" />
+                            <p>Ceasar</p>
+                        </a>
+                        <a className="quick-app" href="https://www.ceasar.frim.io">
+                            <img src={CeasarColouredLogo2} alt="Ceasar app icon" />
+                            <p>Ceasar</p>
+                        </a>
+                        <a className="quick-app" href="https://www.ceasar.frim.io">
+                            <img src={CeasarColouredLogo2} alt="Ceasar app icon" />
+                            <p>Ceasar</p>
+                        </a>
+                        <a className="quick-app" href="https://www.ceasar.frim.io">
+                            <img src={CeasarColouredLogo2} alt="Ceasar app icon" />
+                            <p>Ceasar</p>
+                        </a>
+                        <a className="quick-app" href="https://www.ceasar.frim.io">
+                            <img src={CeasarColouredLogo2} alt="Ceasar app icon" />
+                            <p>Ceasar</p>
+                        </a>
+                        <a className="quick-app" href="https://www.ceasar.frim.io">
+                            <img src={CeasarColouredLogo2} alt="Ceasar app icon" />
+                            <p>Ceasar</p>
+                        </a>
+                        <a className="quick-app" href="https://www.ceasar.frim.io">
+                            <img src={CeasarColouredLogo2} alt="Ceasar app icon" />
+                            <p>Ceasar</p>
+                        </a>
+                    </div>
+                </div>
+                <div className="quick-access-row">
+                    <a href="/apps" className="quick-access-nav">
+                        <span>See all apps</span>
+                        <i className="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </section>
         </main>
     );
 }
