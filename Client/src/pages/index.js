@@ -6,7 +6,7 @@ function Home() {
     const pageTitle = "Home";
 
     useEffect(() => {
-        document.title = `${pageTitle} | Frim`;
+        document.title = `${pageTitle} | Frim Cloud`;
     }, [pageTitle]);
     return (
         <main className="home">

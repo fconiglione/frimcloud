@@ -34,7 +34,7 @@ function Login() {
                 password: ""
             });
             if (response.status === 200) {
-                window.location.href = "/home";
+                window.location.href = "/";
                 return
             }
         } catch (error) {
