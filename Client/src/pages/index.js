@@ -1,9 +1,10 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import ShapesBanner from "../assets/images/shapes-banner.svg";
 import CeasarColouredLogo2 from "../assets/images/ceasar-coloured-logo-2.svg";
 
 function Home() {
     const pageTitle = "Home";
+    const [firstName, setFirstName] = useState("");
 
     useEffect(() => {
         document.title = `${pageTitle} | Frim Cloud`;
@@ -16,7 +17,7 @@ function Home() {
                         <img src={ShapesBanner} alt="A triangle, a square, a circle, and a trapezoid." />
                     </div>
                     <div>
-                        <h1>Welcome to Frim Cloud, Francesco!</h1>
+                        <h1>Welcome to Frim Cloud, {firstName}!</h1>
                     </div>
                     <div className="welcome-nav">
                         <a href="/settings">

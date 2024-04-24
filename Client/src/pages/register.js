@@ -58,7 +58,7 @@ function Register() {
                 receiveUpdates: false,
             });
             if (response.status === 200) {
-                window.location.href = '/';
+                window.location.href = '/login';
                 return;
             }
             else {

@@ -2,6 +2,7 @@ const { Pool } = require('pg');
 const bcrypt = require('bcrypt');
 const dotenv = require('dotenv')
 const axios = require('axios');
+const jwt = require('jsonwebtoken');
 
 dotenv.config();
 
@@ -54,6 +55,25 @@ class User {
             throw error;
         }
     }
+
+    async generateJWTToken(user_id) {
+        const token = jwt.sign( { user_id }, process.env.JWT_SECRET, { expiresIn: '7d' });
+        return token;
+    }
+
+    async getUserById(userId) {
+        try {
+            const query = `SELECT * FROM users WHERE user_id = $1`;
+            const result = await this.pool.query(query, [userId]);
+            if (result.rows.length === 0) {
+                return null;
+            }
+            return result.rows[0];
+        } catch (error) {
+            throw error;
+        }
+    }
+    
 }
 
 module.exports = User;
