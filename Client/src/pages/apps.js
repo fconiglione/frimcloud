@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import CeasarColouredLogo2 from "../assets/images/ceasar-coloured-logo-2.svg";
+import Auth from "../components/Auth";
 
 function Apps() {
     const pageTitle = "Apps";

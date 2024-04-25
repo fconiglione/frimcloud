@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import Auth from '../components/Auth';
 
 function Settings() {
     const pageTitle = "Settings";
