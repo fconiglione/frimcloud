@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import Auth from "./Auth";
 import appLauncherIcon from "../assets/images/app-launcher-icon.png";
 import FrimCloudBlackLogo1 from "../assets/images/frim-cloud-black-logo-1.svg";
 import CeasarColouredLogo2 from "../assets/images/ceasar-coloured-logo-2.svg";
@@ -6,6 +7,7 @@ import CeasarColouredLogo2 from "../assets/images/ceasar-coloured-logo-2.svg";
 function Header() {
     const [isMenuActive, setIsMenuActive] = useState(false);
     const overlayRef = useRef(null);
+    const isAuthenticated = Auth();
 
     const openAppLauncher = () => {
         setIsMenuActive(!isMenuActive);
@@ -32,6 +34,8 @@ function Header() {
 
     const currentYear = new Date().getFullYear();
     return (
+        isAuthenticated &&
+        (
         <header>
             <div className="header-container">
                 <div className="header-column">
@@ -155,6 +159,7 @@ function Header() {
             </div>
             <div id="overlay" ref={overlayRef} onClick={closeAppLauncher}></div>
         </header>
+        )
     );
 }
 

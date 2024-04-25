@@ -23,7 +23,7 @@ router.post('/login', async (req, res) => {
         const JWTToken = await user.generateJWTToken(result.user_id);
         console.log("User:", result);
         console.log("Token:", JWTToken);
-        res.status(200).send({ user: result, token: JWTToken });
+        res.status(200).send({ user_id: result, token: JWTToken });
     } catch (error) {
         console.error("Error logging in user:", error);
         res.status(500).send(error);

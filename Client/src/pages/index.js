@@ -1,15 +1,18 @@
 import React, {useEffect, useState} from "react";
 import ShapesBanner from "../assets/images/shapes-banner.svg";
 import CeasarColouredLogo2 from "../assets/images/ceasar-coloured-logo-2.svg";
+import Auth from "../components/Auth";
 
 function Home() {
     const pageTitle = "Home";
     const [firstName, setFirstName] = useState("");
+    const isAuthenticated = Auth();
 
     useEffect(() => {
         document.title = `${pageTitle} | Frim Cloud`;
     }, [pageTitle]);
     return (
+        isAuthenticated && (
         <main className="home">
             <section className="welcome">
                 <div className="welcome-column">
@@ -93,6 +96,7 @@ function Home() {
                 </div>
             </section>
         </main>
+        )
     );
 }
 

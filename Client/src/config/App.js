@@ -1,6 +1,5 @@
 import React from "react";
 import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
-// import Header from "../components/Header";
 import Home from "../pages/index";
 // import Error404 from "../pages/error";
 import Login from "../pages/login";
