@@ -29,7 +29,8 @@ function Login() {
 
         try {
             const response = await axios.post(apiUrl + '/users/login', formData, { withCredentials: true });
-            const { token, user_id } = response.data;
+            const token = response.data.token;
+            const user_id = response.data.user_id;
             sessionStorage.setItem('token', token);
             sessionStorage.setItem('user_id', user_id);
             setFormData({

@@ -2,6 +2,7 @@ const express = require('express');
 const jwt = require('jsonwebtoken');
 const router = express.Router();
 const User = require('../models/user');
+const Auth = require('../controllers/auth');
 
 router.post('/register', async (req, res) => {
     const { token, fullName, email, password, receiveUpdates } = req.body;
@@ -21,11 +22,27 @@ router.post('/login', async (req, res) => {
     try {
         const result = await user.verifyUser(email, password);
         const JWTToken = await user.generateJWTToken(result.user_id);
-        console.log("User:", result);
-        console.log("Token:", JWTToken);
-        res.status(200).send({ user_id: result, token: JWTToken });
+        res.status(200).send({ user_id: result.user_id, token: JWTToken });
     } catch (error) {
         console.error("Error logging in user:", error);
+        res.status(500).send(error);
+    }
+});
+
+router.post('/verify', async (req, res) => {
+    const { user_id, token } = req.body;
+    console.log("User ID:", user_id);
+    if (!user_id || !token) {
+        console.log("User ID and token are required");
+        return res.status(400).send({ error: 'User ID and token are required' });
+    }
+    try {
+        await Auth.verifyJWTToken(req, res, async () => {
+            console.log("Token is valid");
+            res.status(200).send({ message: 'Token is valid' });
+        });
+    } catch (error) {
+        console.error("Error verifying user:", error);
         res.status(500).send(error);
     }
 });

@@ -61,10 +61,10 @@ class User {
         return token;
     }
 
-    async getUserById(userId) {
+    async getUserById(user_id) {
         try {
             const query = `SELECT * FROM users WHERE user_id = $1`;
-            const result = await this.pool.query(query, [userId]);
+            const result = await this.pool.query(query, [user_id]);
             if (result.rows.length === 0) {
                 return null;
             }

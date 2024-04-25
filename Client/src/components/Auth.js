@@ -3,6 +3,7 @@ import axios from "axios";
 
 function Auth() {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     const [errorMessage, setErrorMessage] = useState("");
     const apiUrl = process.env.NODE_ENV === 'development' ? 
                        process.env.REACT_APP_DEV_API_URL : 
@@ -34,6 +35,10 @@ function Auth() {
 
         authenticate();
     }, []);
+
+    if (isLoading) {
+        return <div>Loading...</div>;
+    }
 
     return isAuthenticated;
 }
