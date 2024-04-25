@@ -16,6 +16,10 @@ header {
   align-items: center;
   gap: 15px;
 }
+.header-column a {
+  color: #000000;
+  text-decoration: none;
+}
 .header-nav-btn {
   background-color: transparent;
   border: none;

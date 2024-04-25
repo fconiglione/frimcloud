@@ -59,10 +59,14 @@ function Header() {
                 </div>
                 <div className="header-column">
                     <div className="header-item">
-                        <i className="fa-solid fa-ellipsis-vertical"></i>
+                        <a href="javascript:void(0)">
+                            <i className="fa-solid fa-ellipsis-vertical"></i>
+                        </a>
                     </div>
                     <div className="header-item">
-                        <i className="fa-solid fa-user"></i>
+                        <a href="javascript:void(0)">
+                            <i className="fa-solid fa-user"></i>
+                        </a>
                     </div>
                 </div>
             </div>

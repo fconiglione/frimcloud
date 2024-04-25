@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import CeasarColouredLogo2 from "../assets/images/ceasar-coloured-logo-2.svg";
 
 function Apps() {
+    const pageTitle = "Apps";
+    const isAuthenticated = Auth();
+    useEffect(() => {
+        document.title = `${pageTitle} | Frim Cloud`;
+    }, [pageTitle]);
     return (
+        isAuthenticated && (
         <main className="apps-page">
             <section className="apps-container">
                 <div className="apps-row">
@@ -55,6 +61,7 @@ function Apps() {
                 </div>
             </section>
         </main>
+        )
     );
 }
 
