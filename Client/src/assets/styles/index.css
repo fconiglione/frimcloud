@@ -166,7 +166,7 @@ header {
   display: flex;
   flex-direction: column;
   list-style-type: none;
-  gap: 20px;
+  gap: 8px;
   margin: 0;
   padding: 0;
 }
@@ -610,7 +610,9 @@ header {
   .welcome-column img {
       width: 100%;
   }
-
+}
+.welcome-column a {
+  font-size: 1em;
 }
 .welcome-column h1 {
   font-size: 2em;
@@ -745,7 +747,40 @@ header {
   color: #000000;
   transition: transform 0.3s ease-in-out;
   font-weight: 600;
+  margin-top: 10px;
 }
 .quick-access-nav:hover {
   transform: translateY(-3px);
+}
+.quick-access-nav a {
+  font-size: 1em;
+}
+
+/* Apps (.apps-page) */
+
+.apps-page {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  gap: 30px;
+  padding: 6% 10%;
+}
+.apps-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 0 2%;
+  width: 100%;
+}
+.apps-row:last-child p {
+  font-size: 1em;
+}
+.apps-row:last-child a {
+  margin-top: 10px;
+  color: #2962FF;
+}
+.apps-row:last-child a:hover {
+  text-decoration: none;
 }

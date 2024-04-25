@@ -5,6 +5,8 @@ import Home from "../pages/index";
 import Login from "../pages/login";
 import Register from "../pages/register";
 import Header from "../components/Header";
+import Settings from "../pages/settings";
+import Apps from "../pages/apps";
 
 function App() {
   return (
@@ -27,6 +29,8 @@ function AppContent() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/apps" element={<Apps />} />
+        <Route path="/settings" element={<Settings />} />
         <Route path="/" element={<Home />} />
         {/* <Route path="*" element={<Error404 />} /> */}
       </Routes>

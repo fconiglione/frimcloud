@@ -32,6 +32,11 @@ function Header() {
         }
     }
 
+    const handleLogout = () => {
+        sessionStorage.clear();
+        window.location.href = "/login";
+    }
+
     const currentYear = new Date().getFullYear();
     return (
         isAuthenticated &&
@@ -118,7 +123,7 @@ function Header() {
                         <div className="app-launcher-nav">
                             <ul>
                                 <li>
-                                    <a href="/help-center">
+                                    <a href="https://www.frim.io/help-center">
                                         <i class="fa-solid fa-question"></i>
                                         <span>Help Center</span>
                                     </a>
@@ -130,7 +135,7 @@ function Header() {
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/logout">
+                                    <a href="javascript:void(0)" onClick={handleLogout}>
                                         <i class="fa-solid fa-right-from-bracket"></i>
                                         <span>Logout</span>
                                     </a>

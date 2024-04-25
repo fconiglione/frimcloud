@@ -1,60 +1,14 @@
-import React, {useEffect, useState} from "react";
-import ShapesBanner from "../assets/images/shapes-banner.svg";
+import React from "react";
 import CeasarColouredLogo2 from "../assets/images/ceasar-coloured-logo-2.svg";
-import Auth from "../components/Auth";
 
-function Home() {
-    const pageTitle = "Home";
-    const [firstName, setFirstName] = useState("");
-    const isAuthenticated = Auth();
-    const full_name = sessionStorage.getItem('full_name');
-
-    useEffect(() => {
-        document.title = `${pageTitle} | Frim Cloud`;
-        if (full_name) {
-            const names = full_name.split(" ");
-            const first_name = names[0];
-            setFirstName(first_name);
-        }
-    }, [pageTitle, firstName]);
+function Apps() {
     return (
-        isAuthenticated && (
-        <main className="home">
-            <section className="welcome">
-                <div className="welcome-column">
-                    <div>
-                        <img src={ShapesBanner} alt="A triangle, a square, a circle, and a trapezoid." />
-                    </div>
-                    <div>
-                        <h1>Welcome to Frim Cloud, {firstName}!</h1>
-                    </div>
-                    <div className="welcome-nav">
-                        <a href="/settings">
-                            Profile settings
-                        </a>
-                        <a href="#quick-access">
-                            Quick access
-                        </a>
-                    </div>
+        <main className="apps-page">
+            <section className="apps-container">
+                <div className="apps-row">
+                    <h1>Apps</h1>
                 </div>
-                <div className="welcome-column">
-                    <a href="https://www.ceasar.frim.io">
-                        <div>
-                            <h2>Revitalize customer relations with Ceasar CRM</h2>
-                        </div>
-                        <div>
-                            <h2>Try Ceasar</h2>
-                            <i className="fas fa-arrow-right"></i>
-                        </div>
-                    </a>
-                </div>
-            </section>
-            <hr />
-            <section className="quick-access" id="quick-access">
-                <div className="quick-access-row">
-                    <h1>Quick access</h1>
-                </div>
-                <div className="quick-access-row">
+                <div className="apps-row">
                     <div className="quick-apps">
                         <a className="quick-app" href="https://www.ceasar.frim.io">
                             <img src={CeasarColouredLogo2} alt="Ceasar app icon" />
@@ -94,16 +48,14 @@ function Home() {
                         </a>
                     </div>
                 </div>
-                <div className="quick-access-row">
-                    <a href="/apps" className="quick-access-nav">
-                        <span>See all apps</span>
-                        <i className="fas fa-arrow-right"></i>
-                    </a>
+                <div className="apps-row">
+                    <div>
+                        <p>Need assistance or have questions? <a href="https://www.frim.io/contact">Contact us</a></p>
+                    </div>
                 </div>
             </section>
         </main>
-        )
     );
 }
 
-export default Home;
+export default Apps;

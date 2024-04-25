@@ -31,8 +31,10 @@ function Login() {
             const response = await axios.post(apiUrl + '/users/login', formData, { withCredentials: true });
             const token = response.data.token;
             const user_id = response.data.user_id;
+            const full_name = response.data.full_name;
             sessionStorage.setItem('token', token);
             sessionStorage.setItem('user_id', user_id);
+            sessionStorage.setItem('full_name', full_name);
             setFormData({
                 email: "",
                 password: ""
