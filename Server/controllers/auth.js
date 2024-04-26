@@ -53,6 +53,8 @@ const Auth = {
             const values = [token_id];
             const { rows } = await pool.query(query, values);
 
+            console.log("Rows:", rows);
+
             if (rows.length === 0) {
                 throw new Error("Session token not found.");
             }
