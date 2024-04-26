@@ -54,15 +54,15 @@ router.post('/verify-session', async (req, res) => {
     try {
         const { user_id, token } = await Auth.verifyTokenId(token_id);
         console.log("Result:", { user_id, token });
-        if (!user_id || !token) {
+        if (!String(user_id) || !String(token)) {
             throw new Error("Invalid session token");
         } else {
-            const verified = await Auth.verifySessionToken(user_id, token);
+            const verified = await Auth.verifySessionToken(String(user_id), String(token));
             res.status(200).send(verified);
         }
     } catch (error) {
         console.error("Error verifying session:", error, token_id);
-        res.status(500).send({ error: 'Error verifying session', message: error.message, token_id });
+        res.status(500).send({ error: 'Error verifying session', message: error.message, token_id, user_id });
     }
 });
 
