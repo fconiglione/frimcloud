@@ -49,8 +49,6 @@ const Auth = {
             throw new Error("Token ID is required.");
         }
         try {
-            const decoded = jwt.verify(token_id, process.env.JWT_SECRET);
-            const user_id = decoded.user_id;
             const query = 'SELECT user_id, token FROM jwt_cloud_tokens WHERE token_id = $1';
             const values = [token_id];
             const { rows } = await pool.query(query, values);
@@ -58,7 +56,7 @@ const Auth = {
             if (rows.length === 0) {
                 throw new Error("Session token not found.");
             }
-            const { token } = rows[0];
+            const { user_id, token } = rows[0];
             return { user_id, token };
         } catch (error) {
             console.error("Error verifying session token:", error);
