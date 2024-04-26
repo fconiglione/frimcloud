@@ -32,9 +32,11 @@ function Login() {
             const token = response.data.token;
             const user_id = response.data.user_id;
             const full_name = response.data.full_name;
+            const token_id = response.data.token_id;
             sessionStorage.setItem('token', token);
             sessionStorage.setItem('user_id', user_id);
             sessionStorage.setItem('full_name', full_name);
+            sessionStorage.setItem('token_id', token_id);
             setFormData({
                 email: "",
                 password: ""

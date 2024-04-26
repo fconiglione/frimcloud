@@ -9,6 +9,21 @@ function Home() {
     const isAuthenticated = Auth();
     const full_name = sessionStorage.getItem('full_name');
 
+    const redirectToApp = (app) => {
+        const token_id = sessionStorage.getItem('token_id');
+    
+        if (!token_id) {
+            console.log("Token ID not found");
+            window.location.href = "/login";
+            return;
+        }
+    
+        const url = "https://www." + app + ".frim.io";
+        const newUrl = `${url}?${token_id}`;
+    
+        window.location.href = newUrl;
+    }  
+
     useEffect(() => {
         document.title = `${pageTitle} | Frim Cloud`;
         if (full_name) {
@@ -38,7 +53,7 @@ function Home() {
                     </div>
                 </div>
                 <div className="welcome-column">
-                    <a href="https://www.ceasar.frim.io">
+                    <a href="javascript:void(0)" onClick={() => redirectToApp("ceasar")}>
                         <div>
                             <h2>Revitalize customer relations with Ceasar CRM</h2>
                         </div>
@@ -56,39 +71,39 @@ function Home() {
                 </div>
                 <div className="quick-access-row">
                     <div className="quick-apps">
-                        <a className="quick-app" href="https://www.ceasar.frim.io">
+                        <a className="quick-app" href="javascript:void(0)" onClick={() => redirectToApp("ceasar")}>
                             <img src={CeasarColouredLogo2} alt="Ceasar app icon" />
                             <p>Ceasar</p>
                         </a>
-                        <a className="quick-app" href="https://www.ceasar.frim.io">
+                        <a className="quick-app" href="javascript:void(0)" onClick={() => redirectToApp("ceasar")}>
                             <img src={CeasarColouredLogo2} alt="Ceasar app icon" />
                             <p>Ceasar</p>
                         </a>
-                        <a className="quick-app" href="https://www.ceasar.frim.io">
+                        <a className="quick-app" href="javascript:void(0)" onClick={() => redirectToApp("ceasar")}>
                             <img src={CeasarColouredLogo2} alt="Ceasar app icon" />
                             <p>Ceasar</p>
                         </a>
-                        <a className="quick-app" href="https://www.ceasar.frim.io">
+                        <a className="quick-app" href="javascript:void(0)" onClick={() => redirectToApp("ceasar")}>
                             <img src={CeasarColouredLogo2} alt="Ceasar app icon" />
                             <p>Ceasar</p>
                         </a>
-                        <a className="quick-app" href="https://www.ceasar.frim.io">
+                        <a className="quick-app" href="javascript:void(0)" onClick={() => redirectToApp("ceasar")}>
                             <img src={CeasarColouredLogo2} alt="Ceasar app icon" />
                             <p>Ceasar</p>
                         </a>
-                        <a className="quick-app" href="https://www.ceasar.frim.io">
+                        <a className="quick-app" href="javascript:void(0)" onClick={() => redirectToApp("ceasar")}>
                             <img src={CeasarColouredLogo2} alt="Ceasar app icon" />
                             <p>Ceasar</p>
                         </a>
-                        <a className="quick-app" href="https://www.ceasar.frim.io">
+                        <a className="quick-app" href="javascript:void(0)" onClick={() => redirectToApp("ceasar")}>
                             <img src={CeasarColouredLogo2} alt="Ceasar app icon" />
                             <p>Ceasar</p>
                         </a>
-                        <a className="quick-app" href="https://www.ceasar.frim.io">
+                        <a className="quick-app" href="javascript:void(0)" onClick={() => redirectToApp("ceasar")}>
                             <img src={CeasarColouredLogo2} alt="Ceasar app icon" />
                             <p>Ceasar</p>
                         </a>
-                        <a className="quick-app" href="https://www.ceasar.frim.io">
+                        <a className="quick-app" href="javascript:void(0)" onClick={() => redirectToApp("ceasar")}>
                             <img src={CeasarColouredLogo2} alt="Ceasar app icon" />
                             <p>Ceasar</p>
                         </a>

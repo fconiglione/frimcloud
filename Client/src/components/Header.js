@@ -37,6 +37,21 @@ function Header() {
         window.location.href = "/login";
     }
 
+    const redirectToApp = (app) => {
+        const token_id = sessionStorage.getItem('token_id');
+    
+        if (!token_id) {
+            console.log("Token ID not found");
+            window.location.href = "/login";
+            return;
+        }
+    
+        const url = "https://www." + app + ".frim.io";
+        const newUrl = `${url}?${token_id}`;
+    
+        window.location.href = newUrl;
+    }    
+
     const currentYear = new Date().getFullYear();
     return (
         isAuthenticated &&
@@ -92,25 +107,25 @@ function Header() {
                             </div>
                             <div className="apps">
                                 <div className="app">
-                                    <a href="#">
+                                    <a href="javascript:void(0)" onClick={() => redirectToApp("ceasar")}>
                                         <img src={CeasarColouredLogo2} alt="Ceasar app icon" />
                                         <p>Ceasar</p>
                                     </a>
                                 </div>
                                 <div className="app">
-                                    <a href="#">
+                                    <a href="javascript:void(0)" onClick={() => redirectToApp("ceasar")}>
                                         <img src={CeasarColouredLogo2} alt="Ceasar app icon" />
                                         <p>Ceasar</p>
                                     </a>
                                 </div>
                                 <div className="app">
-                                    <a href="#">
+                                    <a href="javascript:void(0)" onClick={() => redirectToApp("ceasar")}>
                                         <img src={CeasarColouredLogo2} alt="Ceasar app icon" />
                                         <p>Ceasar</p>
                                     </a>
                                 </div>
                                 <div className="app">
-                                    <a href="#">
+                                    <a href="javascript:void(0)" onClick={() => redirectToApp("ceasar")}>
                                         <img src={CeasarColouredLogo2} alt="Ceasar app icon" />
                                         <p>Ceasar</p>
                                     </a>
