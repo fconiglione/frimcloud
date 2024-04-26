@@ -38,7 +38,9 @@ function Login() {
             sessionStorage.setItem('user_id', user_id);
             sessionStorage.setItem('full_name', full_name);
             sessionStorage.setItem('token_id', token_id);
-            Cookies.set('token_id', token_id, { expires: 7, path: '/' });
+            process.env.NODE_ENV === 'development' ?
+                Cookies.set('token_id', token, { expires: 1, path: '/', domain: 'localhost', secure: true, sameSite: 'Strict' }) :
+                this.cookieService.set('token_id', token, null, '/', '.frim.io', true, 'Strict');
             setFormData({
                 email: "",
                 password: ""
