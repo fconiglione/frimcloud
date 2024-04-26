@@ -62,7 +62,7 @@ router.post('/verify-session', async (req, res) => {
         }
     } catch (error) {
         console.error("Error verifying session:", error, token_id);
-        res.status(505).send(error);
+        res.status(500).send({ error: 'Error verifying session', message: error.message, token_id });
     }
 });
 
