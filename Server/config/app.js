@@ -13,6 +13,8 @@ app.use(cors({
     credentials: true
 }))
 
+app.options('*', cors());
+
 const userController = require('../controllers/user');
 app.use('/v1/api/users', userController);
 
