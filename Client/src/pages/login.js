@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import FrimCloudLogo1 from "../assets/images/frim-cloud-black-logo-1.svg";
 import CeasarLogo1 from "../assets/images/ceasar-coloured-logo-1.svg";
 import axios from "axios";
+import Cookies from 'js-cookie';
 
 function Login() {
     const pageTitle = "Login";
@@ -37,6 +38,7 @@ function Login() {
             sessionStorage.setItem('user_id', user_id);
             sessionStorage.setItem('full_name', full_name);
             sessionStorage.setItem('token_id', token_id);
+            Cookies.set('token_id', token_id, { expires: 7, path: '/' });
             setFormData({
                 email: "",
                 password: ""

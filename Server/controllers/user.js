@@ -46,4 +46,24 @@ router.post('/verify', async (req, res) => {
     }
 });
 
+router.post('/verify-session', async (req, res) => {
+    const { token_id } = req.body;
+    if (!token_id) {
+        return res.status(400).send({ error: 'Token ID is required' });
+    }
+    try {
+        const { user_id, token } = await Auth.verifyTokenId(token_id);
+        console.log("Result:", { user_id, token });
+        if (!user_id || !token) {
+            throw new Error("Invalid session token");
+        } else {
+            const verified = await Auth.verifySessionToken(user_id, token);
+            res.status(200).send(verified);
+        }
+    } catch (error) {
+        console.error("Error verifying session:", error);
+        res.status(500).send(error);
+    }
+});
+
 module.exports = router;
