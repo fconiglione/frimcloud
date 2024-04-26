@@ -39,8 +39,8 @@ function Login() {
             sessionStorage.setItem('full_name', full_name);
             sessionStorage.setItem('token_id', token_id);
             process.env.NODE_ENV === 'development' ?
-                Cookies.set('token_id', token, { expires: 1, path: '/', domain: 'localhost', secure: true, sameSite: 'Strict' }) :
-                Cookies.set('token_id', token, { expires: 1, path: '/', domain: '.frim.io', secure: true, sameSite: 'None' });
+                Cookies.set('token_id', token_id, { expires: 1, path: '/', domain: 'localhost', secure: true, sameSite: 'Strict' }) :
+                Cookies.set('token_id', token_id, { expires: 1, path: '/', domain: '.frim.io', secure: true, sameSite: 'None' });
             setFormData({
                 email: "",
                 password: ""
