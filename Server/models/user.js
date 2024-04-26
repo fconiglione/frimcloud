@@ -57,9 +57,26 @@ class User {
     }
 
     async generateJWTToken(user_id) {
-        const token = jwt.sign( { user_id }, process.env.JWT_SECRET, { expiresIn: '7d' });
-        return token;
-    }
+        try {
+            const token = jwt.sign({ user_id }, process.env.JWT_SECRET, { expiresIn: '7d' });
+    
+            const queryCheck = `SELECT * FROM jwt_cloud_tokens WHERE user_id = $1`;
+            const resultCheck = await this.pool.query(queryCheck, [user_id]);
+    
+            if (resultCheck.rows.length > 0) {
+                const existingTokenId = resultCheck.rows[0].token_id;
+                const queryUpdate = `UPDATE jwt_cloud_tokens SET token = $1, expiration_date = NOW() + INTERVAL '7 days' WHERE token_id = $2 RETURNING token`;
+                const resultUpdate = await this.pool.query(queryUpdate, [token, existingTokenId]);
+                return resultUpdate.rows[0].token;
+            } else {
+                const queryInsert = `INSERT INTO jwt_cloud_tokens (user_id, token, expiration_date) VALUES ($1, $2, NOW() + INTERVAL '7 days') RETURNING token`;
+                const resultInsert = await this.pool.query(queryInsert, [user_id, token]);
+                return resultInsert.rows[0].token;
+            }
+        } catch (error) {
+            throw error;
+        }
+    }    
 
     async getUserById(user_id) {
         try {

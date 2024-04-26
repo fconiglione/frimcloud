@@ -106,7 +106,7 @@ header {
   font-weight: 600;
   font-size: 1em;
 }
-.app-launcher-header fa-icon {
+.app-launcher-header i {
   margin-bottom: -1px;
 }
 .app-launcher-apps {
@@ -191,7 +191,7 @@ header {
 .app-launcher-nav ul li:hover {
   background-color: #eeeeee;
 }
-.app-launcher-nav ul li a fa-icon {
+.app-launcher-nav ul li a i {
   margin-bottom: -1px;
   width: 17px;
 }
