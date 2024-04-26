@@ -65,13 +65,13 @@ class User {
     
             if (resultCheck.rows.length > 0) {
                 const existingTokenId = resultCheck.rows[0].token_id;
-                const queryUpdate = `UPDATE jwt_cloud_tokens SET token = $1, expiration_date = NOW() + INTERVAL '7 days' WHERE token_id = $2 RETURNING token`;
+                const queryUpdate = `UPDATE jwt_cloud_tokens SET token = $1, expiration_date = NOW() + INTERVAL '7 days' WHERE token_id = $2 RETURNING token, token_id`;
                 const resultUpdate = await this.pool.query(queryUpdate, [token, existingTokenId]);
-                return resultUpdate.rows[0].token;
+                return resultUpdate.rows[0];
             } else {
-                const queryInsert = `INSERT INTO jwt_cloud_tokens (user_id, token, expiration_date) VALUES ($1, $2, NOW() + INTERVAL '7 days') RETURNING token`;
+                const queryInsert = `INSERT INTO jwt_cloud_tokens (user_id, token, expiration_date) VALUES ($1, $2, NOW() + INTERVAL '7 days') RETURNING token, token_id`;
                 const resultInsert = await this.pool.query(queryInsert, [user_id, token]);
-                return resultInsert.rows[0].token;
+                return resultInsert.rows[0];
             }
         } catch (error) {
             throw error;
@@ -82,6 +82,7 @@ class User {
         try {
             const query = `SELECT * FROM users WHERE user_id = $1`;
             const result = await this.pool.query(query, [user_id]);
+            console.log("Result:", result);
             if (result.rows.length === 0) {
                 return null;
             }
