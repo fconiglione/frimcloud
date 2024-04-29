@@ -49,7 +49,7 @@ const Auth = {
             throw new Error("Token ID is required.");
         }
         try {
-            const query = 'SELECT user_id, token FROM jwt_cloud_tokens WHERE token_id = $1';
+            const query = 'SELECT user_id, token FROM cloud.jwt_cloud_tokens WHERE token_id = $1';
             const values = [token_id];
             const { rows } = await pool.query(query, values);
 
