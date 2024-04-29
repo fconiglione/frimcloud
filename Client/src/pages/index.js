@@ -18,10 +18,8 @@ function Home() {
             return;
         }
     
-        const url = "https://www." + app + ".frim.io";
-        const newUrl = `${url}?${token_id}`;
-    
-        window.location.href = newUrl;
+        const url = "https://www." + app + ".frim.io";    
+        window.location.href = url;
     }  
 
     useEffect(() => {
