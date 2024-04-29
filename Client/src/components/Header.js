@@ -3,6 +3,7 @@ import Auth from "./Auth";
 import appLauncherIcon from "../assets/images/app-launcher-icon.png";
 import FrimCloudBlackLogo1 from "../assets/images/frim-cloud-black-logo-1.svg";
 import CeasarColouredLogo2 from "../assets/images/ceasar-coloured-logo-2.svg";
+import Cookies from 'js-cookie';
 
 function Header() {
     const [isMenuActive, setIsMenuActive] = useState(false);
@@ -34,6 +35,7 @@ function Header() {
 
     const handleLogout = () => {
         sessionStorage.clear();
+        Cookies.remove('token_id');
         window.location.href = "/login";
     }
 

@@ -26,7 +26,7 @@ class User {
             else {
                 console.log("Captcha verification successful");
                 const hashedPassword = await bcrypt.hash(password, 10);
-                const query = `INSERT INTO users (full_name, email, password, receive_updates) VALUES ($1, $2, $3, $4)`;
+                const query = `INSERT INTO accounts.users (full_name, email, password, receive_updates) VALUES ($1, $2, $3, $4)`;
                 const values = [fullName, email, hashedPassword, receiveUpdates];
                 const result = await this.pool.query(query, values);
                 return result;
@@ -38,7 +38,7 @@ class User {
 
     async verifyUser(email, password) {
         try {
-            const query = `SELECT * FROM users WHERE email = $1`;
+            const query = `SELECT * FROM accounts.users WHERE email = $1`;
             const result = await this.pool.query(query, [email]);
             if (result.rows.length === 0) {
                 throw new Error("User not found");
@@ -60,16 +60,16 @@ class User {
         try {
             const token = jwt.sign({ user_id }, process.env.JWT_SECRET, { expiresIn: '7d' });
     
-            const queryCheck = `SELECT * FROM jwt_cloud_tokens WHERE user_id = $1`;
+            const queryCheck = `SELECT * FROM accounts.jwt_cloud_tokens WHERE user_id = $1`;
             const resultCheck = await this.pool.query(queryCheck, [user_id]);
     
             if (resultCheck.rows.length > 0) {
                 const existingTokenId = resultCheck.rows[0].token_id;
-                const queryUpdate = `UPDATE jwt_cloud_tokens SET token = $1, expiration_date = NOW() + INTERVAL '7 days' WHERE token_id = $2 RETURNING token, token_id`;
+                const queryUpdate = `UPDATE accounts.jwt_cloud_tokens SET token = $1, expiration_date = NOW() + INTERVAL '7 days' WHERE token_id = $2 RETURNING token, token_id`;
                 const resultUpdate = await this.pool.query(queryUpdate, [token, existingTokenId]);
                 return resultUpdate.rows[0];
             } else {
-                const queryInsert = `INSERT INTO jwt_cloud_tokens (user_id, token, expiration_date) VALUES ($1, $2, NOW() + INTERVAL '7 days') RETURNING token, token_id`;
+                const queryInsert = `INSERT INTO accounts.jwt_cloud_tokens (user_id, token, expiration_date) VALUES ($1, $2, NOW() + INTERVAL '7 days') RETURNING token, token_id`;
                 const resultInsert = await this.pool.query(queryInsert, [user_id, token]);
                 return resultInsert.rows[0];
             }
@@ -80,7 +80,7 @@ class User {
 
     async getUserById(user_id) {
         try {
-            const query = `SELECT * FROM users WHERE user_id = $1`;
+            const query = `SELECT * FROM accounts.users WHERE user_id = $1`;
             const result = await this.pool.query(query, [user_id]);
             console.log("Result:", result);
             if (result.rows.length === 0) {
