@@ -22,6 +22,14 @@ router.post('/login', async (req, res) => {
     try {
         const result = await user.verifyUser(email, password);
         const JWTToken = await user.generateJWTToken(result.user_id);
+
+        res.cookie('token_id', JWTToken.token_id, { 
+            expires: new Date(Date.now() + 86400 * 1000),
+            httpOnly: true,
+            secure: true,
+            sameSite: 'None'
+        });
+
         res.status(200).send({ user_id: result.user_id, token: JWTToken.token, full_name: result.full_name, token_id: JWTToken.token_id });
     } catch (error) {
         console.error("Error logging in user:", error);
