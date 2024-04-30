@@ -31,7 +31,6 @@ router.post('/login', async (req, res) => {
 
 router.post('/verify', async (req, res) => {
     const { user_id, token } = req.body;
-    console.log("User ID:", user_id);
     if (!user_id || !token) {
         console.log("User ID and token are required");
         return res.status(400).send({ error: 'User ID and token are required' });
@@ -48,6 +47,7 @@ router.post('/verify', async (req, res) => {
 
 router.post('/verify-session', async (req, res) => {
     const { token_id } = req.body;
+    console.log(req.body);
     if (!token_id) {
         return res.status(400).send({ error: 'Token ID is required' });
     }

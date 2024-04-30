@@ -82,7 +82,6 @@ class User {
         try {
             const query = `SELECT * FROM cloud.users WHERE user_id = $1`;
             const result = await this.pool.query(query, [user_id]);
-            console.log("Result:", result);
             if (result.rows.length === 0) {
                 return null;
             }

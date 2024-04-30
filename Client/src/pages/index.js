@@ -18,7 +18,7 @@ function Home() {
             return;
         }
     
-        const url = "https://www." + app + ".frim.io";    
+        const url = "https://www." + app + ".frim.io" + "?token_id=" + token_id;    
         window.location.href = url;
     }  
 
