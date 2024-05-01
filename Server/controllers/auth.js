@@ -52,9 +52,6 @@ const Auth = {
             const query = 'SELECT user_id, token FROM cloud.jwt_cloud_tokens WHERE token_id = $1';
             const values = [token_id];
             const { rows } = await pool.query(query, values);
-
-            console.log("Rows:", rows);
-
             if (rows.length === 0) {
                 throw new Error("Session token not found.");
             }

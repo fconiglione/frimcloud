@@ -55,7 +55,6 @@ router.post('/verify', async (req, res) => {
 
 router.post('/verify-session', async (req, res) => {
     const { token_id } = req.body;
-    console.log(req.body);
     if (!token_id) {
         return res.status(400).send({ error: 'Token ID is required' });
     }
