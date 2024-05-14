@@ -35,38 +35,6 @@ function Apps() {
                             <img src={CeasarColouredLogo2} alt="Ceasar app icon" />
                             <p>Ceasar</p>
                         </a>
-                        <a className="quick-app" href="javascript:void(0)" onClick={() => redirectToApp("ceasar")}>
-                            <img src={CeasarColouredLogo2} alt="Ceasar app icon" />
-                            <p>Ceasar</p>
-                        </a>
-                        <a className="quick-app" href="javascript:void(0)" onClick={() => redirectToApp("ceasar")}>
-                            <img src={CeasarColouredLogo2} alt="Ceasar app icon" />
-                            <p>Ceasar</p>
-                        </a>
-                        <a className="quick-app" href="javascript:void(0)" onClick={() => redirectToApp("ceasar")}>
-                            <img src={CeasarColouredLogo2} alt="Ceasar app icon" />
-                            <p>Ceasar</p>
-                        </a>
-                        <a className="quick-app" href="javascript:void(0)" onClick={() => redirectToApp("ceasar")}>
-                            <img src={CeasarColouredLogo2} alt="Ceasar app icon" />
-                            <p>Ceasar</p>
-                        </a>
-                        <a className="quick-app" href="javascript:void(0)" onClick={() => redirectToApp("ceasar")}>
-                            <img src={CeasarColouredLogo2} alt="Ceasar app icon" />
-                            <p>Ceasar</p>
-                        </a>
-                        <a className="quick-app" href="javascript:void(0)" onClick={() => redirectToApp("ceasar")}>
-                            <img src={CeasarColouredLogo2} alt="Ceasar app icon" />
-                            <p>Ceasar</p>
-                        </a>
-                        <a className="quick-app" href="javascript:void(0)" onClick={() => redirectToApp("ceasar")}>
-                            <img src={CeasarColouredLogo2} alt="Ceasar app icon" />
-                            <p>Ceasar</p>
-                        </a>
-                        <a className="quick-app" href="javascript:void(0)" onClick={() => redirectToApp("ceasar")}>
-                            <img src={CeasarColouredLogo2} alt="Ceasar app icon" />
-                            <p>Ceasar</p>
-                        </a>
                     </div>
                 </div>
                 <div className="apps-row">
