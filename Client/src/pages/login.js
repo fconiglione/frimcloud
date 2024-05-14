@@ -99,7 +99,7 @@ function Login() {
                         </div>
                     </div>
                     <div className="login-products">
-                        <a className="login-product" href="/ceasar" target="_blank">
+                        <a className="login-product" href="https://www.frim.io/ceasar" target="_blank">
                             <img src={CeasarLogo1} alt="Ceasar logo"/>
                         </a>
                     </div>
