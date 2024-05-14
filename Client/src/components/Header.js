@@ -112,24 +112,6 @@ function Header() {
                                         <p>Ceasar</p>
                                     </a>
                                 </div>
-                                <div className="app">
-                                    <a href="javascript:void(0)" onClick={() => redirectToApp("ceasar")}>
-                                        <img src={CeasarColouredLogo2} alt="Ceasar app icon" />
-                                        <p>Ceasar</p>
-                                    </a>
-                                </div>
-                                <div className="app">
-                                    <a href="javascript:void(0)" onClick={() => redirectToApp("ceasar")}>
-                                        <img src={CeasarColouredLogo2} alt="Ceasar app icon" />
-                                        <p>Ceasar</p>
-                                    </a>
-                                </div>
-                                <div className="app">
-                                    <a href="javascript:void(0)" onClick={() => redirectToApp("ceasar")}>
-                                        <img src={CeasarColouredLogo2} alt="Ceasar app icon" />
-                                        <p>Ceasar</p>
-                                    </a>
-                                </div>
                             </div>
                             <div>
                                 <a href="/apps" className="see-all-apps-btn">
