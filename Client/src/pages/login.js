@@ -30,17 +30,12 @@ function Login() {
 
         try {
             const response = await axios.post(apiUrl + '/users/login', formData, { withCredentials: true });
-            const token = response.data.token;
-            const user_id = response.data.user_id;
-            const full_name = response.data.full_name;
-            const token_id = response.data.token_id;
-            sessionStorage.setItem('token', token);
-            sessionStorage.setItem('user_id', user_id);
+            const full_name = response.data.full_name; // Storing full name in session storage for use in other components
+            const token = response.data.token_id; // Storing token ID in a cookie for authentication
+            const user_id = response.data.user_id; // Storing user ID in a cookie for authentication
             sessionStorage.setItem('full_name', full_name);
-            sessionStorage.setItem('token_id', token_id);
-            process.env.NODE_ENV === 'development' ?
-                Cookies.set('token_id', token_id, { expires: 1, path: '/', domain: 'localhost', secure: true, sameSite: 'None' }) :
-                Cookies.set('token_id', token_id, { expires: 1, path: '/', domain: '.frim.io', secure: true, sameSite: 'None' });
+            Cookies.set('token', token);
+            Cookies.set('user_id', user_id);
             setFormData({
                 email: "",
                 password: ""

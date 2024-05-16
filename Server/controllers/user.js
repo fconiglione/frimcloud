@@ -23,14 +23,18 @@ router.post('/login', async (req, res) => {
         const result = await user.verifyUser(email, password);
         const JWTToken = await user.generateJWTToken(result.user_id);
 
-        res.cookie('token_id', JWTToken.token_id, { 
+        const cookieOptions = {
             expires: new Date(Date.now() + 86400 * 1000),
             httpOnly: true,
-            secure: true,
-            sameSite: 'None'
-        });
+            secure: process.env.NODE_ENV === 'development' ? false : true,
+            sameSite: 'None',
+            domain: process.env.NODE_ENV === 'development' ? 'localhost' : '.frim.io'
+        };
 
-        res.status(200).send({ user_id: result.user_id, token: JWTToken.token, full_name: result.full_name, token_id: JWTToken.token_id });
+        // Set the token ID in a cookie and send the user's full name in the response
+        res.cookie('token', JWTToken.token, cookieOptions);
+        res.cookie('user_id', result.user_id, cookieOptions);
+        res.status(200).send({ full_name: result.full_name });
     } catch (error) {
         console.error("Error logging in user:", error);
         res.status(500).send(error);
@@ -38,13 +42,16 @@ router.post('/login', async (req, res) => {
 });
 
 router.post('/verify', async (req, res) => {
-    const { user_id, token } = req.body;
-    if (!user_id || !token) {
-        console.log("User ID and token are required");
-        return res.status(400).send({ error: 'User ID and token are required' });
+    const token = req.cookies.token;
+    const user_id = req.cookies.user_id;
+    console.log(req.cookies);
+    if ((!token || token === 'undefined') || (!user_id || user_id === 'undefined')) {
+        console.log("Token and user ID is required");
+        return res.status(400).send({ error: 'Token and user ID is required' });
     }
     try {
-        await Auth.verifyJWTToken(req, res, async () => {
+        await Auth.verifyJWTTokenByCookie(token, user_id, async () => {
+            console.log("Token is valid");
             res.status(200).send({ message: 'Token is valid' });
         });
     } catch (error) {
@@ -60,7 +67,6 @@ router.post('/verify-session', async (req, res) => {
     }
     try {
         const { user_id, token } = await Auth.verifyTokenId(token_id);
-        console.log("Result:", { user_id, token });
         if (!user_id || !token) {
             throw new Error("Invalid session token");
         } else {

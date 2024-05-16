@@ -11,15 +11,8 @@ function Auth() {
     
     useEffect(() => {
         const authenticate = async () => {
-            try {
-                const user_id = sessionStorage.getItem('user_id');
-                const token = sessionStorage.getItem('token');
-                if (!user_id || !token) {
-                    setIsAuthenticated(false);
-                    throw new Error("User ID or token not found");
-                }
-                
-                const response = await axios.post(apiUrl + '/users/verify', { user_id, token }, { withCredentials: true });
+            try {              
+                const response = await axios.post(apiUrl + '/users/verify', { token: "token", user_id: "user_id" }, { withCredentials: true });
                 if (response.status === 200) {
                     setIsAuthenticated(true);
                 } else {

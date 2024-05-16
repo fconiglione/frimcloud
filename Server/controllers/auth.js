@@ -42,6 +42,57 @@ const Auth = {
         }
     },
 
+    async verifyJWTTokenByCookie(token, user_id, callback) {
+        console.log("User Id (from cookies):", user_id);
+        console.log("Token:", token);
+    
+        if (!user_id || !token) {
+            throw new Error("Access denied. User ID or token not provided.");
+        }
+    
+        try {
+            const decoded = jwt.verify(token, process.env.JWT_SECRET);
+            console.log("Decoded token:", decoded);
+            
+            if (String(decoded.user_id) !== String(user_id)) {
+                console.log("Invalid user ID in token.");
+                throw new Error("Invalid user ID in token.");
+            }
+            
+            const user = new User();
+            const userData = await user.getUserById(user_id);
+            
+            if (!userData) {
+                throw new Error("User not found.");
+            }
+            
+            callback();
+        } catch (error) {
+            console.error("Error verifying token:", error);
+            throw new Error("Invalid token or user not found.");
+        }
+    },
+
+    // async verifyAuthByTokenId(token_id, next) {
+    //     console.log("Token ID:", token_id);
+    //     if (!token_id) {
+    //         console.log("Token ID is required.");
+    //         throw new Error("Token ID is required.");
+    //     }
+    //     try {
+    //         const query = 'SELECT user_id, token FROM cloud.jwt_cloud_tokens WHERE token_id = $1';
+    //         const values = [token_id];
+    //         const { rows } = await pool.query(query, values);
+    //         if (rows.length === 0) {
+    //             throw new Error("Session token not found.");
+    //         }
+    //         next(); // Call next middleware
+    //     } catch (error) {
+    //         console.error("Error verifying session token:", error);
+    //         throw new Error("Invalid session token during verification.");
+    //     }
+    // },
+
     verifyTokenId: async (token_id) => {
         console.log("Token ID:", token_id);
         if (!token_id) {
