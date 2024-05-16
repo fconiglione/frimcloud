@@ -44,7 +44,6 @@ router.post('/login', async (req, res) => {
 router.post('/verify', async (req, res) => {
     const token = req.cookies.token;
     const user_id = req.cookies.user_id;
-    console.log(req.cookies);
     if ((!token || token === 'undefined') || (!user_id || user_id === 'undefined')) {
         console.log("Token and user ID is required");
         return res.status(400).send({ error: 'Token and user ID is required' });
@@ -77,6 +76,12 @@ router.post('/verify-session', async (req, res) => {
         console.error("Error verifying session:", error, token_id);
         res.status(500).send({ error: 'Error verifying session', message: error.message, token_id });
     }
+});
+
+router.get('/logout', async (req, res) => {
+    res.clearCookie("token", { httpOnly: true, path: "/", maxAge: -1 })
+    res.clearCookie("user_id", { httpOnly: true, path: "/", maxAge: -1 })
+    res.status(200).send({ message: "User logged out" });
 });
 
 module.exports = router;

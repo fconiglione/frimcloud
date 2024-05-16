@@ -57,7 +57,7 @@ function Home() {
                         </div>
                         <div>
                             <h2>Try Ceasar</h2>
-                            <i className="fas fa-arrow-right"></i>
+                            <i className="fa-solid fa-arrow-right"></i>
                         </div>
                     </a>
                 </div>

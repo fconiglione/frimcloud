@@ -660,6 +660,8 @@ header {
 }
 .welcome-column:last-child h2, .welcome-column:last-child i {
   font-size: 1.6em;
+}
+.welcome-column:last-child h2 {
   font-weight: 400;
 }
 .welcome-column:last-child div:last-child {

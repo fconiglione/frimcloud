@@ -3,7 +3,7 @@ import Auth from "./Auth";
 import appLauncherIcon from "../assets/images/app-launcher-icon.png";
 import FrimCloudBlackLogo1 from "../assets/images/frim-cloud-black-logo-1.svg";
 import CeasarColouredLogo2 from "../assets/images/ceasar-coloured-logo-2.svg";
-import Cookies from 'js-cookie';
+import axios from "axios";
 
 function Header() {
     const [isMenuActive, setIsMenuActive] = useState(false);
@@ -33,11 +33,25 @@ function Header() {
         }
     }
 
-    const handleLogout = () => {
-        sessionStorage.clear();
-        Cookies.remove('token_id');
-        window.location.href = "/login";
-    }
+    const handleLogout = async () => {
+        try {
+            sessionStorage.clear();
+            const apiUrl = process.env.NODE_ENV === 'development' ? 
+                           process.env.REACT_APP_DEV_API_URL : 
+                           process.env.REACT_APP_PROD_API_URL;
+                           
+            const response = await axios.get(apiUrl + '/users/logout', { withCredentials: true });
+
+            if (response.status === 200) {
+                window.location.href = "/login";
+                console.log("User logged out");
+            } else {
+                console.log("Error logging out:", response);
+            }
+        } catch (error) {
+            console.log("Error logging out:", error);
+        }
+    }    
 
     const redirectToApp = (app) => {
         const token_id = sessionStorage.getItem('token_id');
