@@ -63,10 +63,8 @@ router.post('/verify', async (req, res) => {
 // For other apps to verify the session
 router.post('/verify-session', async (req, res) => {
     // Unable to get these values from the cookies
-    // const token = req.cookies.token;
-    // const user_id = req.cookies.user_id;
-    const token = req.body.token;
-    const user_id = req.body.user_id;
+    const token = req.cookies.token;
+    const user_id = req.cookies.user_id;
     console.log("Cookies:", req.cookies);
     if ((!token || token === 'undefined') || (!user_id || user_id === 'undefined')) {
         console.log("Token and user ID is required");
