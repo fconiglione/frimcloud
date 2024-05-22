@@ -59,11 +59,12 @@ router.post('/verify', async (req, res) => {
     }
 });
 
+// For other apps to verify the session
 router.post('/verify-session', async (req, res) => {
     const token = req.cookies.token;
     const user_id = req.cookies.user_id;
     if (!token || !user_id) {
-        return res.status(400).send({ error: 'Token and user_id is required' });
+        return res.status(400).send({ error: 'Token and user id is required' });
     }
     try {
         const verified = await Auth.verifySessionToken(user_id, token);

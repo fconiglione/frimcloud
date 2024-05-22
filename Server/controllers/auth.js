@@ -73,26 +73,6 @@ const Auth = {
         }
     },
 
-    // async verifyAuthByTokenId(token_id, next) {
-    //     console.log("Token ID:", token_id);
-    //     if (!token_id) {
-    //         console.log("Token ID is required.");
-    //         throw new Error("Token ID is required.");
-    //     }
-    //     try {
-    //         const query = 'SELECT user_id, token FROM cloud.jwt_cloud_tokens WHERE token_id = $1';
-    //         const values = [token_id];
-    //         const { rows } = await pool.query(query, values);
-    //         if (rows.length === 0) {
-    //             throw new Error("Session token not found.");
-    //         }
-    //         next(); // Call next middleware
-    //     } catch (error) {
-    //         console.error("Error verifying session token:", error);
-    //         throw new Error("Invalid session token during verification.");
-    //     }
-    // },
-
     verifyTokenId: async (token_id) => {
         console.log("Token ID:", token_id);
         if (!token_id) {

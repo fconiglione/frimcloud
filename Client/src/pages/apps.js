@@ -6,15 +6,7 @@ function Apps() {
     const pageTitle = "Apps";
     const isAuthenticated = Auth();
 
-    const redirectToApp = (app) => {
-        const token_id = sessionStorage.getItem('token_id');
-    
-        if (!token_id) {
-            console.log("Token ID not found");
-            window.location.href = "/login";
-            return;
-        }
-    
+    const redirectToApp = (app) => {    
         const url = "https://www." + app + ".frim.io";    
         window.location.href = url;
     }   

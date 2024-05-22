@@ -10,14 +10,6 @@ function Home() {
     const full_name = sessionStorage.getItem('full_name');
 
     const redirectToApp = (app) => {
-        const token_id = sessionStorage.getItem('token_id');
-    
-        if (!token_id) {
-            console.log("Token ID not found");
-            window.location.href = "/login";
-            return;
-        }
-    
         const url = "https://www." + app + ".frim.io";
         window.location.href = url;
     }  
