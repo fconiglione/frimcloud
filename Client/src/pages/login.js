@@ -34,11 +34,12 @@ function Login() {
             const token = response.data.token_id; // Storing token ID in a cookie for authentication
             const user_id = response.data.user_id; // Storing user ID in a cookie for authentication
             sessionStorage.setItem('full_name', full_name);
-            const domainParts = window.location.hostname.split('.');
-            const topLevelDomain = domainParts.length > 1 ? domainParts.slice(-2).join('.') : domainParts.join('.');
-
-            Cookies.set('token', token, { domain: topLevelDomain, path: '/', sameSite: 'None', secure: process.env.NODE_ENV !== 'development' });
-            Cookies.set('user_id', user_id, { domain: topLevelDomain, path: '/', sameSite: 'None', secure: process.env.NODE_ENV !== 'development' });
+            // Setting token and user_id as sessionStorage items for use in other components (temporary fix before adding SSO service)
+            sessionStorage.setItem('token', token);
+            sessionStorage.setItem('user_id', user_id);
+            // Setting token and user_id as cookies
+            Cookies.set('token', token);
+            Cookies.set('user_id', user_id);
             setFormData({
                 email: "",
                 password: ""
