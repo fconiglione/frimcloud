@@ -28,7 +28,8 @@ router.post('/login', async (req, res) => {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'development' ? false : true,
             sameSite: 'None',
-            domain: process.env.NODE_ENV === 'development' ? 'localhost' : '.frim.io'
+            domain: process.env.NODE_ENV === 'development' ? 'localhost' : '.frim.io',
+            path: '/'
         };
 
         // Set the token ID in a cookie and send the user's full name in the response
@@ -64,7 +65,7 @@ router.post('/verify-session', async (req, res) => {
     const token = req.cookies.token;
     const user_id = req.cookies.user_id;
     if (!token || !user_id) {
-        return res.status(300).send({ error: 'Token and user id is required' });
+        return res.status(400).send({ error: 'Token and user id is required' });
     }
     try {
         const verified = await Auth.verifySessionToken(user_id, token);
