@@ -60,6 +60,22 @@ router.post('/verify', async (req, res) => {
 });
 
 router.post('/verify-session', async (req, res) => {
+    const token = req.cookies.token;
+    const user_id = req.cookies.user_id;
+    if (!token || !user_id) {
+        return res.status(400).send({ error: 'Token and user_id is required' });
+    }
+    try {
+        const verified = await Auth.verifySessionToken(user_id, token);
+        res.status(200).send(verified);
+    } catch (error) {
+        console.error("Error verifying session:", error, token);
+        res.status(500).send({ error: 'Error verifying session', message: error.message, token });
+    }
+});
+
+// Admin for testing
+router.post('/admin-verify-session', async (req, res) => {
     const { token_id } = req.body;
     if (!token_id) {
         return res.status(400).send({ error: 'Token ID is required' });
