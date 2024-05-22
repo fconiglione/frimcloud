@@ -34,8 +34,11 @@ function Login() {
             const token = response.data.token_id; // Storing token ID in a cookie for authentication
             const user_id = response.data.user_id; // Storing user ID in a cookie for authentication
             sessionStorage.setItem('full_name', full_name);
-            Cookies.set('token', token);
-            Cookies.set('user_id', user_id);
+            const domainParts = window.location.hostname.split('.');
+            const topLevelDomain = domainParts.length > 1 ? domainParts.slice(-2).join('.') : domainParts.join('.');
+
+            Cookies.set('token', token, { domain: topLevelDomain, path: '/', sameSite: 'None', secure: process.env.NODE_ENV !== 'development' });
+            Cookies.set('user_id', user_id, { domain: topLevelDomain, path: '/', sameSite: 'None', secure: process.env.NODE_ENV !== 'development' });
             setFormData({
                 email: "",
                 password: ""
