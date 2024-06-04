@@ -25,7 +25,7 @@ router.post('/login', async (req, res) => {
 
         const cookieOptions = {
             expires: new Date(Date.now() + 86400 * 1000),
-            httpOnly: true,
+            httpOnly: false, // Setting to false until SSO integration is complete
             secure: process.env.NODE_ENV === 'development' ? false : true,
             sameSite: 'None',
             domain: process.env.NODE_ENV === 'development' ? 'localhost' : '.frim.io',
@@ -35,7 +35,8 @@ router.post('/login', async (req, res) => {
         // Set the token ID in a cookie and send the user's full name in the response
         res.cookie('token', JWTToken.token, cookieOptions);
         res.cookie('user_id', result.user_id, cookieOptions);
-        res.status(200).send({ full_name: result.full_name });
+        // Temporarily sending token and user_id until SSO integration is complete
+        res.status(200).send({ full_name: result.full_name, token: JWTToken.token, user_id: result.user_id });
     } catch (error) {
         console.error("Error logging in user:", error);
         res.status(500).send(error);
