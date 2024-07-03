@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from "react";
 import ShapesBanner from "../assets/images/shapes-banner.svg";
 import CeasarColouredLogo2 from "../assets/images/ceasar-coloured-logo-2.svg";
-import Auth from "../components/Auth";
+import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 
 function Home() {
+    const { user } = useAuth0();
     const pageTitle = "Home";
     const [firstName, setFirstName] = useState("");
-    const isAuthenticated = Auth();
     const full_name = sessionStorage.getItem('full_name');
 
     const redirectToApp = (app) => {
@@ -23,7 +23,6 @@ function Home() {
         }
     }, [pageTitle, firstName]);
     return (
-        isAuthenticated && (
         <main className="home">
             <section className="welcome">
                 <div className="welcome-column">
@@ -31,7 +30,7 @@ function Home() {
                         <img src={ShapesBanner} alt="A triangle, a square, a circle, and a trapezoid." />
                     </div>
                     <div>
-                        <h1>Welcome to Frim Cloud, {firstName}!</h1>
+                        <h1>Welcome to Frim Cloud, {user.name}!</h1>
                     </div>
                     <div className="welcome-nav">
                         <a href="/settings">
@@ -76,7 +75,6 @@ function Home() {
             </section>
         </main>
         )
-    );
 }
 
-export default Home;
+export default withAuthenticationRequired(Home);

@@ -1,10 +1,8 @@
 import React, { useEffect } from "react";
 import CeasarColouredLogo2 from "../assets/images/ceasar-coloured-logo-2.svg";
-import Auth from "../components/Auth";
 
 function Apps() {
     const pageTitle = "Apps";
-    const isAuthenticated = Auth();
 
     const redirectToApp = (app) => {    
         const url = "https://www." + app + ".frim.io";    
@@ -15,7 +13,6 @@ function Apps() {
         document.title = `${pageTitle} | Frim Cloud`;
     }, [pageTitle]);
     return (
-        isAuthenticated && (
         <main className="apps-page">
             <section className="apps-container">
                 <div className="apps-row">
@@ -37,7 +34,6 @@ function Apps() {
             </section>
         </main>
         )
-    );
 }
 
 export default Apps;
