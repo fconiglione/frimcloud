@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import CeasarColouredLogo2 from "../assets/images/ceasar-coloured-logo-2.svg";
+import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
+import Loading from "../components/Loading";
 
 function Apps() {
     const pageTitle = "Apps";
@@ -36,4 +38,6 @@ function Apps() {
         )
 }
 
-export default Apps;
+export default withAuthenticationRequired(Apps, {
+    onRedirecting: () => <Loading />,
+  });

@@ -3,7 +3,8 @@ import appLauncherIcon from "../assets/images/app-launcher-icon.png";
 import FrimCloudBlackLogo1 from "../assets/images/frim-cloud-black-logo-1.svg";
 import CeasarColouredLogo2 from "../assets/images/ceasar-coloured-logo-2.svg";
 import axios from "axios";
-import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
+import Loading from "./Loading";
 
 function Header() {
     const { logout } = useAuth0();
@@ -180,4 +181,6 @@ function Header() {
         )
 }
 
-export default Header;
+export default withAuthenticationRequired(Header, {
+    onRedirecting: () => <Loading />,
+  });
