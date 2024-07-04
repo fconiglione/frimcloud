@@ -4,6 +4,23 @@ const router = express.Router();
 const User = require('../models/user');
 const Auth = require('../controllers/auth');
 
+// Adding users to Frim Cloud database
+router.post('/auth/callback', async (req, res) => {
+    try {
+      const { sub, nickname, name, picture, updated_at } = req.body;
+      const user = new User();
+      const result = await user.addUserToCloudDB(sub, nickname, name, picture, updated_at);
+
+      const storedUser = result.rows[0];
+      client.release();
+  
+      res.status(200).json({ message: 'User data stored in Cloud DB', user: storedUser });
+    } catch (error) {
+      console.error('Error storing user data:', error);
+      res.status(500).json({ message: 'Error storing user data', error: error.message });
+    }
+  });
+
 router.post('/register', async (req, res) => {
     const { token, fullName, email, password, receiveUpdates } = req.body;
     const user = new User();

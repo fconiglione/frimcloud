@@ -15,6 +15,18 @@ class User {
       });
     }
 
+    async addUserToCloudDB(sub, nickname, name, picture, updated_at) {
+        try {
+            const values = [sub, nickname, name, picture, updated_at];
+            const query = `INSERT INTO cloud.users (sub, nickname, name, picture, updated_at) VALUES ($1, $2, $3)`;
+            const result = await this.pool.query(query, values);
+            return result;
+        }
+        catch (error) {
+            throw error;
+        }
+    }
+
     async createUser(token, fullName, email, password, receiveUpdates) {
         try {
             const response = await axios.post(
