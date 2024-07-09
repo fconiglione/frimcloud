@@ -7,17 +7,23 @@ const Auth = require('../controllers/auth');
 // Adding users to Frim Cloud database
 router.post('/auth/callback', async (req, res) => {
     try {
-      const { sub, nickname, name, picture, updated_at } = req.body;
-      const user = new User();
-      const result = await user.addUserToCloudDB(sub, nickname, name, picture, updated_at);
+        const { sub, nickname, name, picture, updated_at } = req.body;
+        const user = new User();
+        // Check if the user already exists
+        const userExists = await user.userExists(sub);
 
-      const storedUser = result.rows[0];
-      client.release();
-  
-      res.status(200).json({ message: 'User data stored in Cloud DB', user: storedUser });
+        if (userExists) {
+            return res.status(200).json({ message: 'User already exists in Cloud DB' });
+        }
+
+        // Add the user to the database if they don't exist
+        const result = await user.addUserToCloudDB(sub, nickname, name, picture, updated_at);
+        const storedUser = result.rows[0];
+
+        res.status(200).json({ message: 'User data stored in Cloud DB', user: storedUser });
     } catch (error) {
-      console.error('Error storing user data:', error);
-      res.status(500).json({ message: 'Error storing user data', error: error.message });
+        console.error('Error storing user data:', error);
+        res.status(500).json({ message: 'Error storing user data', error: error.message });
     }
   });
 

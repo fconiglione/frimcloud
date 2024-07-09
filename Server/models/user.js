@@ -17,15 +17,23 @@ class User {
 
     async addUserToCloudDB(sub, nickname, name, picture, updated_at) {
         try {
-            const values = [sub, nickname, name, picture, updated_at];
-            const query = `INSERT INTO cloud.users (sub, nickname, name, picture, updated_at) VALUES ($1, $2, $3, $4, $5) ON CONFLICT (sub) DO UPDATE SET nickname = $2, name = $3, picture = $4, updated_at = $5 RETURNING *`;
-            const result = await this.pool.query(query, values);
-            return result;
+          const query = `INSERT INTO cloud.users (sub, nickname, name, picture, updated_at) VALUES ($1, $2, $3, $4, $5) ON CONFLICT (sub) DO UPDATE SET nickname = $2, name = $3, picture = $4, updated_at = $5 RETURNING *`;
+          const values = [sub, nickname, name, picture, updated_at];
+          const result = await this.pool.query(query, values);
+          return result;
+        } catch (error) {
+          throw error;
         }
-        catch (error) {
-            throw error;
+      }
+    
+      async userExists(sub) {
+        try {
+          const result = await this.pool.query('SELECT * FROM cloud.users WHERE sub = $1', [sub]);
+          return result.rows.length > 0;
+        } catch (error) {
+          throw error;
         }
-    }
+      }
 
     async createUser(token, fullName, email, password, receiveUpdates) {
         try {
