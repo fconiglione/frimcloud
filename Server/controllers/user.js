@@ -16,7 +16,7 @@ router.post('/auth/callback', async (req, res) => {
             return res.status(200).json({ message: 'User already exists in Cloud DB' });
         }
 
-        // Add the user to the database if they don't exist
+        // Add the user to the cloud database if they don't exist
         const result = await user.addUserToCloudDB(sub, nickname, name, picture, updated_at);
         const storedUser = result.rows[0];
 
