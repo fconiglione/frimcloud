@@ -1,4 +1,6 @@
 import React, { useEffect } from 'react';
+import { withAuthenticationRequired } from "@auth0/auth0-react";
+import Loading from "../components/Loading";
 
 function Settings() {
     const pageTitle = "Settings";
@@ -12,4 +14,6 @@ function Settings() {
         )
 }
 
-export default Settings;
+export default withAuthenticationRequired(Settings, {
+    onRedirecting: () => <Loading />,
+  });

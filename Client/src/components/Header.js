@@ -32,27 +32,7 @@ function Header() {
             overlay.style.display = 'none';
             document.body.style.overflow = 'auto';
         }
-    }
-
-    const handleLogout = async () => {
-        try {
-            sessionStorage.clear();
-            const apiUrl = process.env.NODE_ENV === 'development' ? 
-                           process.env.REACT_APP_DEV_API_URL : 
-                           process.env.REACT_APP_PROD_API_URL;
-                           
-            const response = await axios.get(apiUrl + '/users/logout', { withCredentials: true });
-
-            if (response.status === 200) {
-                window.location.href = "/login";
-                console.log("User logged out");
-            } else {
-                console.log("Error logging out:", response);
-            }
-        } catch (error) {
-            console.log("Error logging out:", error);
-        }
-    }    
+    }  
 
     const redirectToApp = (app) => {
         const token_id = sessionStorage.getItem('token_id');
