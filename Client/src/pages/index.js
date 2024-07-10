@@ -3,7 +3,6 @@ import ShapesBanner from "../assets/images/shapes-banner.svg";
 import CeasarColouredLogo2 from "../assets/images/ceasar-coloured-logo-2.svg";
 import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 import Loading from "../components/Loading";
-import Login from "../components/Login";
 import axios from "axios";
 
 function Home() {
