@@ -3,7 +3,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import Loading from "./Loading";
 
 const Login = () => {
-  const { user, isLoading, loginWithRedirect } = useAuth0();
+  const { user, loginWithRedirect } = useAuth0();
 
   useEffect(() => {
     if (!user) {
@@ -11,11 +11,6 @@ const Login = () => {
     }
   }, [user, loginWithRedirect]);
 
-  if (isLoading) {
-    return <Loading />;
-  }
-
-  return <Loading />;
 };
 
 export default Login;
