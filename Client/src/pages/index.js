@@ -1,13 +1,17 @@
 import React, {useEffect, useState} from "react";
 import ShapesBanner from "../assets/images/shapes-banner.svg";
 import CeasarColouredLogo2 from "../assets/images/ceasar-coloured-logo-2.svg";
-import Auth from "../components/Auth";
+import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
+import Loading from "../components/Loading";
+import axios from "axios";
 
 function Home() {
+    const { user } = useAuth0();
     const pageTitle = "Home";
-    const [firstName, setFirstName] = useState("");
-    const isAuthenticated = Auth();
-    const full_name = sessionStorage.getItem('full_name');
+
+    const apiUrl = process.env.NODE_ENV === 'development' ? 
+                       process.env.REACT_APP_DEV_API_URL : 
+                       process.env.REACT_APP_PROD_API_URL;
 
     const redirectToApp = (app) => {
         const url = "https://www." + app + ".frim.io";
@@ -16,14 +20,35 @@ function Home() {
 
     useEffect(() => {
         document.title = `${pageTitle} | Frim Cloud`;
-        if (full_name) {
-            const names = full_name.split(" ");
-            const first_name = names[0];
-            setFirstName(first_name);
-        }
-    }, [pageTitle, firstName]);
+
+        // Function to make a POST request to the backend
+        // to store the user data in the Cloud DB
+        // until paid subscription to Auth0 is active
+        const registerUser = async () => {
+            try {
+                const response = await axios.post(apiUrl + '/users/auth/callback', {
+                    sub: user.sub,
+                    nickname: user.nickname,
+                    name: user.name,
+                    picture: user.picture,
+                    updated_at: user.updated_at
+                });
+
+                if (response.status === 200) {
+                    console.log('User data stored in Cloud DB:', response.data);
+                } else {
+                    console.error('Error storing user data:', response.data);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        };
+
+        // Call the registerUser function
+        registerUser();
+        
+    }, [pageTitle]);
     return (
-        isAuthenticated && (
         <main className="home">
             <section className="welcome">
                 <div className="welcome-column">
@@ -31,7 +56,7 @@ function Home() {
                         <img src={ShapesBanner} alt="A triangle, a square, a circle, and a trapezoid." />
                     </div>
                     <div>
-                        <h1>Welcome to Frim Cloud, {firstName}!</h1>
+                        <h1>Welcome to Frim Cloud, {user.nickname}!</h1>
                     </div>
                     <div className="welcome-nav">
                         <a href="/settings">
@@ -76,7 +101,8 @@ function Home() {
             </section>
         </main>
         )
-    );
 }
 
-export default Home;
+export default withAuthenticationRequired(Home, {
+    onRedirecting: () => <Loading />,
+  });

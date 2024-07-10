@@ -1,14 +1,15 @@
 import React, { useRef, useState } from "react";
-import Auth from "./Auth";
 import appLauncherIcon from "../assets/images/app-launcher-icon.png";
 import FrimCloudBlackLogo1 from "../assets/images/frim-cloud-black-logo-1.svg";
 import CeasarColouredLogo2 from "../assets/images/ceasar-coloured-logo-2.svg";
 import axios from "axios";
+import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
+import Loading from "./Loading";
 
 function Header() {
+    const { logout } = useAuth0();
     const [isMenuActive, setIsMenuActive] = useState(false);
     const overlayRef = useRef(null);
-    const isAuthenticated = Auth();
 
     const openAppLauncher = () => {
         setIsMenuActive(!isMenuActive);
@@ -68,8 +69,6 @@ function Header() {
 
     const currentYear = new Date().getFullYear();
     return (
-        isAuthenticated &&
-        (
         <header>
             <div className="header-container">
                 <div className="header-column">
@@ -150,7 +149,7 @@ function Header() {
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="javascript:void(0)" onClick={handleLogout}>
+                                    <a href="javascript:void(0)" onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>
                                         <i class="fa-solid fa-right-from-bracket"></i>
                                         <span>Logout</span>
                                     </a>
@@ -180,7 +179,8 @@ function Header() {
             <div id="overlay" ref={overlayRef} onClick={closeAppLauncher}></div>
         </header>
         )
-    );
 }
 
-export default Header;
+export default withAuthenticationRequired(Header, {
+    onRedirecting: () => <Loading />,
+  });
