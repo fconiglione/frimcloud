@@ -198,6 +198,19 @@ header {
 .app-launcher-nav {
   width: 100%;
 }
+.app-launcher-nav button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  font-weight: 600;
+  font-size: 1em;
+  color: #000000;
+  padding: 8px 5px;
+}
 .app-launcher-bottom {
   display: flex;
   justify-content: center;

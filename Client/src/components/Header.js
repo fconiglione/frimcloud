@@ -129,10 +129,10 @@ function Header() {
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="javascript:void(0)" onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>
+                                    <button onClick={() => logout({ logoutParams: { returnTo: "https://www.cloud.frim.io" } })}>
                                         <i class="fa-solid fa-right-from-bracket"></i>
                                         <span>Logout</span>
-                                    </a>
+                                    </button>
                                 </li>
                             </ul>
                         </div>

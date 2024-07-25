@@ -3,11 +3,15 @@ import { useAuth0 } from "@auth0/auth0-react";
 import Loading from "./Loading";
 
 const Login = () => {
-  const { user, loginWithRedirect } = useAuth0();
+  const { user, loginWithRedirect, getAccessTokenSilently } = useAuth0();
 
   useEffect(() => {
-    if (!user) {
-      loginWithRedirect();
+    if (!user || !user.sub) {
+      try {
+        getAccessTokenSilently();
+      } catch {
+        loginWithRedirect();
+      }
     }
   }, [user, loginWithRedirect]);
 
