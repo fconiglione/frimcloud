@@ -12,6 +12,8 @@ const Login = () => {
       } catch {
         loginWithRedirect();
       }
+    } else {
+      window.location.href = "/";
     }
   }, [user, loginWithRedirect]);
 
