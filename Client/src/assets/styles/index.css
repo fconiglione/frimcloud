@@ -737,7 +737,7 @@ header {
 .quick-app {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 10px;
   align-items: center;
   justify-content: center;
   text-decoration: none;
@@ -752,7 +752,7 @@ header {
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
 .quick-app img {
-  width: 60px;
+  width: 80px;
   height: auto;
 }
 .quick-app p {
